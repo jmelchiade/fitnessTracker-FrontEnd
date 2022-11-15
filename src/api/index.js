@@ -1,27 +1,35 @@
 // url = "https://fitnesstrac-kr.herokuapp.com/"
+const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+const COHORT = "2209-FTB-ET-WEB-FT";
+
+
+const getTokenFromLocal = localStorage.getItem("token");
 
 //register user
-export async function registerUser(username, password, token) {
-  console.log(token, "banana");
+export async function registerUser(username, password) {
+  console.log(username, password, "banana");
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       username,
       password,
-      token,
     }),
   };
 
+  // const response = await fetch(
+  //   `${BASE_URL}/api/users/register`,
+  //   options
+  // );
   const response = await fetch(
-    "https://fitnesstrac-kr.herokuapp.com/api/users/register",
+    `http://fitnesstrac-kr.herokuapp.com/api/users/register`,
     options
   );
   const result = await response.json();
-  console.log(result.data, "This is register data!!");
+  console.log(result, "This is register data!!");
+  // return result.data.token;
   return result.data;
 }
 
