@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Register, Home, Login } from "./";
+import { Navbar, Register, Home, Login, Profile } from "./";
 import { Routes, Route } from "react-router-dom";
 import { getUserInfo } from "../api";
 
@@ -9,7 +9,7 @@ const Main = () => {
 
   const userLogin = async () => {
     const user = await getUserInfo(localStorage.getItem("token"));
-    getUserLoggedIn(user);
+    setUserLoggedIn(user);
     setLogin(true);
   };
   useEffect(() => {
@@ -35,6 +35,11 @@ const Main = () => {
               setLogin={setLogin}
             />
           }
+        />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="profile"
+          element={<Profile userLoggedIn={userLoggedIn} />}
         />
         <Route path="/" element={<Home />} />
       </Routes>
