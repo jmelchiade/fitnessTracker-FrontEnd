@@ -12,10 +12,7 @@ const Main = () => {
         <Route path="home" element={<Home />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      <h1>
-        This is Main Content. This text appears on all components unless removed
-        or modified.
-      </h1>
+      <h1>This is Main Content</h1>
     </div>
   );
 };

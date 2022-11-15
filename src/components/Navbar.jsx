@@ -4,17 +4,19 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <span id="upperNavContainer">
-        <button id="homeButton">Button to somewhere</button>
-      </span>
+      <span id="upperNavContainer"></span>
       <div id="navbar">
-        I am Navbar
-        <NavLink id="navRegister" to="Register">
-          Register
-        </NavLink>
-        <NavLink id="navHome" to="Home">
-          Home
-        </NavLink>
+        Fitness Tracker Navbar{" "}
+        <button id="registerButton">
+          <NavLink id="navRegister" to="Register">
+            Register
+          </NavLink>
+        </button>
+        <button id="homeButton">
+          <NavLink id="navHome" to="Home">
+            Home
+          </NavLink>
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { registerUser } from "../api";
 
 const Register = () => {
   return (
@@ -6,14 +7,10 @@ const Register = () => {
       <h1>This is Register</h1>
       <div className="regForm">
         <form>
-          <label id="userRegForm" htmlFor="username">
-            Username:{" "}
-          </label>
-          <input id="username" type="text" required />
-          <label id="passRegForm" htmlFor="password">
-            Password:{" "}
-          </label>
-          <input id="password" type="password" />
+          <label id="userRegForm" htmlFor="username"></label>
+          <input id="username" type="text" required placeholder="username" />
+          <label id="passRegForm" htmlFor="password"></label>
+          <input id="password" type="password" placeholder="password" />
           <button id="subBtn" type="submit">
             Submit
           </button>
