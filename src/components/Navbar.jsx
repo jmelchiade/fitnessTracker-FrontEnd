@@ -17,6 +17,11 @@ const Navbar = () => {
             Home
           </NavLink>
         </button>
+        <button id="registerButton">
+          <NavLink id="navLogin" to="Login">
+            Login
+          </NavLink>
+        </button>
       </div>
     </div>
   );
