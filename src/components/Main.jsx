@@ -17,15 +17,15 @@ const Main = () => {
       userLogin();
     }
   }, []);
-
+  console.log(isLogin, "user logged in data");
   return (
     <div id="main">
       <Navbar isLogin={isLogin} setLogin={setLogin} />
       <Routes>
         <Route path="register" element={<Register setLogin={setLogin} />} />
-        <Route path="/" element={<Home />} />
+
         <Route path="home" element={<Home />} />
-        <Route path="/" element={<Home />} />
+
         <Route
           path="login"
           element={
@@ -41,9 +41,8 @@ const Main = () => {
           path="profile"
           element={<Profile userLoggedIn={userLoggedIn} />}
         />
-        <Route path="/" element={<Home />} />
+
         <Route path="activities" element={<Activities />} />
-        <Route path="/" element={<Home />} />
       </Routes>
       <h1>This is Main Content</h1>
     </div>

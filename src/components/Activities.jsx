@@ -16,7 +16,7 @@ const Activities = () => {
       );
       const result = await response.json();
       console.log(result, "this is activities result");
-      const activityData = result.map((activity) => {});
+      // const activityData = result.map((activity) => {});
       setAllActivities(result);
     };
     getAllActivities();
