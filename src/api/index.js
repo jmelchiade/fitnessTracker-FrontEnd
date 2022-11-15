@@ -71,3 +71,20 @@ export async function loginUser(username, password) {
   return result.data;
 }
 //get all routines
+
+//get all activities
+
+export async function getAllActivities() {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    "http://fitnesstrac-kr.herokuapp.com/api/activities",
+    options
+  );
+  const result = await response.json();
+  console.log("pineapple", result);
+  return result;
+}

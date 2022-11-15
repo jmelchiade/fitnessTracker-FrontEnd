@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Register, Home, Login, Profile } from "./";
+import { Navbar, Register, Home, Login, Profile, Activities } from "./";
 import { Routes, Route } from "react-router-dom";
 import { getUserInfo } from "../api";
 
@@ -41,6 +41,8 @@ const Main = () => {
           path="profile"
           element={<Profile userLoggedIn={userLoggedIn} />}
         />
+        <Route path="/" element={<Home />} />
+        <Route path="activities" element={<Activities />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <h1>This is Main Content</h1>
