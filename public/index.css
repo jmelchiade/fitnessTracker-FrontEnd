@@ -11,11 +11,7 @@ body {
   max-height: 10%;
   min-height: 40px;
   background-color: #222222;
-  color: white;
+  color: pink;
   display: flex;
   align-items: center;
-}
-
-#navbar div {
-  padding: 5px;
 }
