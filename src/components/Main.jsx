@@ -1,15 +1,41 @@
-import React from "react";
-import { Navbar, Register, Home } from "./";
+import React, { useState, useEffect } from "react";
+import { Navbar, Register, Home, Login } from "./";
 import { Routes, Route } from "react-router-dom";
+import { getUserInfo } from "../api";
 
 const Main = () => {
+  const [isLogin, setLogin] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState({});
+
+  const userLogin = async () => {
+    const user = await getUserInfo(localStorage.getItem("token"));
+    getUserLoggedIn(user);
+    setLogin(true);
+  };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      userLogin();
+    }
+  }, []);
+
   return (
     <div id="main">
-      <Navbar />
+      <Navbar isLogin={isLogin} setLogin={setLogin} />
       <Routes>
-        <Route path="register" element={<Register />} />
+        <Route path="register" element={<Register setLogin={setLogin} />} />
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="login"
+          element={
+            <Login
+              isLogin={isLogin}
+              userLogin={userLogin}
+              setLogin={setLogin}
+            />
+          }
+        />
         <Route path="/" element={<Home />} />
       </Routes>
       <h1>This is Main Content</h1>
