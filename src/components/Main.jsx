@@ -9,8 +9,8 @@ const Main = () => {
       <Routes>
         <Route path="register" element={<Register />} />
         <Route path="/" element={<Home />} />
-        {/* <Route path="home" element={<Home />} />
-        <Route path="/" element={<Home />} /> */}
+        <Route path="home" element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <h1>
         This is Main Content. This text appears on all components unless removed

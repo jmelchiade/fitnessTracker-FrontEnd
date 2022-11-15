@@ -5,12 +5,15 @@ const Navbar = () => {
   return (
     <div>
       <span id="upperNavContainer">
-        <button id="homeButton">Home</button>
+        <button id="homeButton">Button to somewhere</button>
       </span>
       <div id="navbar">
         I am Navbar
-        <NavLink id="homeNavLink" to="Register">
+        <NavLink id="navRegister" to="Register">
           Register
+        </NavLink>
+        <NavLink id="navHome" to="Home">
+          Home
         </NavLink>
       </div>
     </div>
