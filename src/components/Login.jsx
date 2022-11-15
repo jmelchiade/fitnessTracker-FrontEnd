@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loginUser } from "../api";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   const [userName, setUsername] = useState([]);
   let navigate = useNavigate();
   async function handleSubmit(event) {
@@ -11,14 +11,14 @@ const Login = () => {
     const password = event.target[1].value;
     const loggedInUser = await loginUser(username, password);
     const token = loggedInUser.token;
-    props.SetLogin(true);
+    props.setLogin(true);
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
-    localStorage.removeItem("username");
-    localStorage.setItem("username", username);
-    setUsername(userName);
-    props.userLogin();
-    navigate("/profile");
+    // localStorage.removeItem("username");
+    // localStorage.setItem("username", username);
+    // setUsername(userName);
+    // props.userLogin();
+    // navigate("/profile");
   }
   return (
     <div id="login">

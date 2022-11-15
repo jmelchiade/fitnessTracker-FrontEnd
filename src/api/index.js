@@ -11,7 +11,6 @@ export async function registerUser(username, password) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       username,
@@ -30,7 +29,7 @@ export async function registerUser(username, password) {
   const result = await response.json();
   console.log(result, "This is register data!!");
   // return result.data.token;
-  return result.data;
+  return result;
 }
 
 export async function getUserInfo(token) {
@@ -68,7 +67,8 @@ export async function loginUser(username, password) {
     options
   );
   const result = await response.json();
-  return result.data;
+  console.log(result, "userInfo data");
+  return result;
 }
 //get all routines
 
