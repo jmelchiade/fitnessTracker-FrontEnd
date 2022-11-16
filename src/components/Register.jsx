@@ -10,13 +10,7 @@ const Register = (props) => {
     const token = userData.token;
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
-    // const registeredUser = await registerUser(username, password);
-    // const token = registeredUser.token;
     props.setLogin(true);
-    // localStorage.removeItem("token");
-    // localStorage.setItem("token", token);
-    // localStorage.removeItem("username");
-    // localStorage.setItem("username", username);
   }
   return (
     <div id="register">

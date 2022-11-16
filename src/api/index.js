@@ -33,24 +33,25 @@ export async function registerUser(username, password) {
   return result;
 }
 
-export async function getUserInfo(token) {
-  console.log(token);
-  const response = await fetch(
-    "https://fitnesstrac-kr.herokuapp.com/api/users/register",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(username, password),
-    }
-  );
-  // console.log(getUserInfo);
+// export async function getUserInfo(token) {
+//   console.log(token);
+//   const response = await fetch(
+//     "https://fitnesstrac-kr.herokuapp.com/api/users/register",
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify(username, password),
+//     }
+//   );
+//   // console.log(getUserInfo);
 
-  const result = await response.json();
-  return result.data;
-}
+//   const result = await response.json();
+//   return result.data;
+// }
+
 //login user
 export async function loginUser(username, password) {
   const options = {

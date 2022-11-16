@@ -27,6 +27,11 @@ const Navbar = () => {
             Activities
           </NavLink>
         </button>
+        <button id="routinesButton">
+          <NavLink id="navRoutines" to="Routines">
+            Routines
+          </NavLink>
+        </button>
       </div>
     </div>
   );

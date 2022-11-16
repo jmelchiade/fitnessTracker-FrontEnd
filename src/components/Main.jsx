@@ -1,40 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Register, Home, Login, Profile, Activities } from "./";
+import { Navbar, Register, Home, Login, Profile, Activities, Routines } from "./";
 import { Routes, Route } from "react-router-dom";
-import { getAllActivities, getUserInfo } from "../api";
 
 const Main = () => {
   const [isLogin, setLogin] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState({});
-  const [filteredActivities, setFilteredActivities] = useState([]);
+  // const [userLoggedIn, setUserLoggedIn] = useState({});
   const [allActivities, setAllActivities] = useState([]);
+  const [allRoutines, setAllRoutines] = useState([]);
 
-  const userLogin = async () => {
-    const user = await getUserInfo(localStorage.getItem("token"));
-    setUserLoggedIn(user);
-    setLogin(true);
-  };
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      userLogin();
-    }
-  }, []);
-  console.log(isLogin, "user logged in data");
-
+  // const userLogin = async () => {
+  //   const user = await getUserInfo(localStorage.getItem("token"));
+  //   setUserLoggedIn(user);
+  //   setLogin(true);
+  // };
   // useEffect(() => {
-  //   async function fetchActivities() {
-  //     const allActivities = await getAllActivities();
-  //     setAllActivities(allActivities);
+  //   if (localStorage.getItem("token")) {
+  //     userLogin();
   //   }
-  //   fetchActivities();
-  // }),
-  //   [];
-
-  // function filterActivities(id) {
-  //   return activities.filter((activity) => {
-  //     return activity.id == id;
-  //   });
-  // }
+  // }, []);
+  // console.log(isLogin, "user logged in data");
 
   return (
     <div id="main">
@@ -49,7 +33,6 @@ const Main = () => {
           element={
             <Login
               isLogin={isLogin}
-              userLogin={userLogin}
               setLogin={setLogin}
             />
           }
@@ -57,19 +40,8 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="profile"
-          element={<Profile userLoggedIn={userLoggedIn} />}
+          element={<Profile />}
         />
-        {/* <Route
-          path="activities"
-          element={
-            <Activities
-              activities={
-                filteredActivities.length ? filteredActivities : activities
-              }
-              setFilteredActivities={setFilteredActivities}
-            />
-          }
-        /> */}
         <Route
           path="activities"
           element={
@@ -79,6 +51,11 @@ const Main = () => {
               isLogin={isLogin}
             />
           }
+        />
+        <Route path="routines" element={<Routines 
+        allRoutines={allRoutines}
+        setAllRoutines={setAllRoutines}
+        isLogin={isLogin} />} 
         />
       </Routes>
       <h1>This is Main Content</h1>
