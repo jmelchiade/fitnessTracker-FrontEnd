@@ -70,7 +70,16 @@ const Main = () => {
             />
           }
         /> */}
-        <Route path = "activities" element = {<Activities allActivities={allActivities} setAllActivities={setAllActivities} />} />
+        <Route
+          path="activities"
+          element={
+            <Activities
+              allActivities={allActivities}
+              setAllActivities={setAllActivities}
+              isLogin={isLogin}
+            />
+          }
+        />
       </Routes>
       <h1>This is Main Content</h1>
     </div>

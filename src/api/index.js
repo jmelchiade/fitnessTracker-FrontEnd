@@ -2,7 +2,8 @@
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 const COHORT = "2209-FTB-ET-WEB-FT";
 
-const getTokenFromLocal = localStorage.getItem("token");
+// this is our function to get the local stored token
+const token = localStorage.getItem("token");
 
 //register user
 export async function registerUser(username, password) {
@@ -86,5 +87,27 @@ export async function getAllActivities() {
   );
   const result = await response.json();
   console.log("pineapple", result);
+  return result;
+}
+
+//create new activity
+
+export async function createActivity(name, description) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      description,
+    }),
+  };
+  const response = await fetch(
+    "http://fitnesstrac-kr.herokuapp.com/api/activities",
+    options
+  );
+  const result = await response.json();
   return result;
 }
