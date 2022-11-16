@@ -18,7 +18,8 @@ body {
 }
 
 #homeButton,
-#registerButton {
+#registerButton,
+#activitiesButton {
   align-items: center;
   border-radius: 25px;
   padding: 10px;
@@ -26,8 +27,16 @@ body {
 }
 
 #homeButton:hover,
-#registerButton:hover {
+#registerButton:hover,
+#activitiesButton:hover {
   background-color: darkblue;
   color: white;
   cursor: pointer;
+}
+
+#activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
