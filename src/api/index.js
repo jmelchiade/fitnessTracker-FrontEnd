@@ -1,9 +1,10 @@
-// url = "https://fitnesstrac-kr.herokuapp.com/"
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 const COHORT = "2209-FTB-ET-WEB-FT";
 
+
 // this is our function to get the local stored token
 const token = localStorage.getItem("token");
+
 
 //register user
 export async function registerUser(username, password) {
@@ -18,7 +19,6 @@ export async function registerUser(username, password) {
       password,
     }),
   };
-
   // const response = await fetch(
   //   `${BASE_URL}/api/users/register`,
   //   options
@@ -33,24 +33,6 @@ export async function registerUser(username, password) {
   return result;
 }
 
-// export async function getUserInfo(token) {
-//   console.log(token);
-//   const response = await fetch(
-//     "https://fitnesstrac-kr.herokuapp.com/api/users/register",
-//     {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//       body: JSON.stringify(username, password),
-//     }
-//   );
-//   // console.log(getUserInfo);
-
-//   const result = await response.json();
-//   return result.data;
-// }
 
 //login user
 export async function loginUser(username, password) {
@@ -73,8 +55,26 @@ export async function loginUser(username, password) {
   return result;
 }
 
-//get all activities
+//This route is used to grab an already logged in user's relevant data. It is mostly helpful for verifying the user has a valid token (and is thus logged in). You must pass a valid token with this request, or it will be rejected.
+export async function getUserInfo() {
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    // body: JSON.stringify({
+    //   id,
+    //   username,
+    // }),
+  }
+  const response = await fetch("https://fitnesstrac-kr.herokuapp.com/api/users/me", options);
+  const result = await response.json();
+  console.log(result, "logged in user data!")
+  return result;
+}
 
+
+//get all activities
 export async function getAllActivities() {
   const options = {
     headers: {
@@ -90,8 +90,8 @@ export async function getAllActivities() {
   return result;
 }
 
-//create new activity
 
+//create new activity
 export async function createActivity(name, description) {
   const options = {
     method: "POST",
@@ -112,8 +112,7 @@ export async function createActivity(name, description) {
   return result;
 }
 
-// get all routines
-
+// create routine
 export async function createRoutine(name, goal, isPublic) {
   const options = {
     method: "POST",
@@ -132,6 +131,5 @@ export async function createRoutine(name, goal, isPublic) {
     options
   );
   const result = await response.json();
-  console.log(result, "banana");
   return result;
 }

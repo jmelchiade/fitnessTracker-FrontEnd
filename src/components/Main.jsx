@@ -16,18 +16,9 @@ const Main = () => {
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
 
-  // const userLogin = async () => {
-  //   const user = await getUserInfo(localStorage.getItem("token"));
-  //   setUserLoggedIn(user);
-  //   setLogin(true);
-  // };
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     userLogin();
-  //   }
-  // }, []);
-  // console.log(isLogin, "user logged in data");
 
+  //add use effect for checking if token exists in local storage for auto logging in user 
+  
   return (
     <div id="main">
       <Navbar isLogin={isLogin} setLogin={setLogin} />

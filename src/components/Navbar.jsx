@@ -12,47 +12,45 @@ const Navbar = (props) => {
         {props.isLogin === false ? (
           <div>
             <button id="registerButton">
-              <NavLink id="navRegister" to="Register">
+              <NavLink id="navRegister" to="register">
                 Register
               </NavLink>
             </button>
             <button id="loginButton">
-              <NavLink id="navLogin" to="Login">
+              <NavLink id="navLogin" to="login">
                 Login
               </NavLink>
             </button>
           </div>
         ) : null}
+
         {props.isLogin ? (
-          <button
-            id="homeButton"
-            onClick={() => {
-              props.setLogin(false);
-            }}
-          >
-            <NavLink id="navMyRoutines" to="MyRoutines">
+          <button id="myRoutinesButton">
+            <NavLink id="navMyRoutines" to="myroutines">
               My Routines
             </NavLink>
           </button>
         ) : null}
+
         {props.isLogin ? (
-          <button
-            id="logOut"
-            onClick={() => {
-              props.setLogin(false);
-              // localStorage.removeItem("token");
-            }}
-          >
+          <button id="logOutButton" onClick={() => { props.setLogin(false);
+          // localStorage.removeItem("token");
+            }}>
             Log Out
           </button>
         ) : null}
+        <button id="homeButton">
+          <NavLink id="navHome" to="/">
+            Home
+          </NavLink>
+        </button>
         <button id="activitiesButton">
-          <NavLink id="navActivities" to="Activities">
+          <NavLink id="navActivities" to="activities">
             Activities
           </NavLink>
         </button>
         <button id="routinesButton">
-          <NavLink id="navRoutines" to="Routines">
+          <NavLink id="navRoutines" to="routines">
             Routines
           </NavLink>
         </button>
