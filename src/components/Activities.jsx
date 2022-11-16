@@ -25,6 +25,16 @@ const Activities = (props) => {
 
   return (
     <div id="activity">
+      <form>
+        <input
+          id="searchActivities"
+          className="input"
+          type="text"
+          name="name"
+          placeholder="Search activities"
+        ></input>
+        <button id="searchActBtn">Search</button>
+      </form>
       {allActivities && allActivities.length
         ? allActivities.map((activity) => {
             return (
