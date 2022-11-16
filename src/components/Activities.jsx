@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { getAllActivities } from "../api";
 
 const Activities = (props) => {
-  const [allActivities, setAllActivities] = useState([]);
+  const setAllActivities = props.setAllActivities;
+  const allActivities = props.allActivities
   const [queryActivity, setQueryActivity] = useState("");
 
   useEffect(() => {

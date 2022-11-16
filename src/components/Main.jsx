@@ -6,8 +6,8 @@ import { getAllActivities, getUserInfo } from "../api";
 const Main = () => {
   const [isLogin, setLogin] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState({});
-  const [activities, setAllActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
+  const [allActivities, setAllActivities] = useState([]);
 
   const userLogin = async () => {
     const user = await getUserInfo(localStorage.getItem("token"));
@@ -21,14 +21,14 @@ const Main = () => {
   }, []);
   console.log(isLogin, "user logged in data");
 
-  useEffect(() => {
-    async function fetchActivities() {
-      const allActivities = await getAllActivities();
-      setAllActivities(allActivities);
-    }
-    fetchActivities();
-  }),
-    [];
+  // useEffect(() => {
+  //   async function fetchActivities() {
+  //     const allActivities = await getAllActivities();
+  //     setAllActivities(allActivities);
+  //   }
+  //   fetchActivities();
+  // }),
+  //   [];
 
   // function filterActivities(id) {
   //   return activities.filter((activity) => {
@@ -59,7 +59,7 @@ const Main = () => {
           path="profile"
           element={<Profile userLoggedIn={userLoggedIn} />}
         />
-        <Route
+        {/* <Route
           path="activities"
           element={
             <Activities
@@ -69,7 +69,8 @@ const Main = () => {
               setFilteredActivities={setFilteredActivities}
             />
           }
-        />
+        /> */}
+        <Route path = "activities" element = {<Activities allActivities={allActivities} setAllActivities={setAllActivities} />} />
       </Routes>
       <h1>This is Main Content</h1>
     </div>
