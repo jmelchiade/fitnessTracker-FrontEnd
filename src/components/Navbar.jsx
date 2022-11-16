@@ -22,6 +22,11 @@ const Navbar = () => {
             Login
           </NavLink>
         </button>
+        <button id="activitiesButton">
+          <NavLink id="navActivities" to="Activities">
+            Activities
+          </NavLink>
+        </button>
       </div>
     </div>
   );
