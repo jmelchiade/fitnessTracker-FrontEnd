@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getAllActivities } from "../api";
+import { createActivity, getAllActivities } from "../api";
 
 const Activities = (props) => {
   const setAllActivities = props.setAllActivities;
-  const allActivities = props.allActivities
-  const [queryActivity, setQueryActivity] = useState("");
+  const allActivities = props.allActivities;
+  const isLogin = props.isLogin;
+
+  // const [queryActivity, setQueryActivity] = useState("");
 
   useEffect(() => {
     const getAllActivities = async () => {
@@ -18,6 +20,14 @@ const Activities = (props) => {
     getAllActivities();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const name = e.target[0].value;
+    const description = e.target[1].value;
+    const result = await createActivity(name, description);
+    console.log(result, "Created activity!");
+  }
+
   // const activities = props.activities
   // const onSearch=() => {
   //   const filteredSearch = activities.filter((activities) => activity.name.toLowerCase().includes(queryActivity.toLowerCase()))
@@ -26,16 +36,25 @@ const Activities = (props) => {
 
   return (
     <div id="activity">
-      <form>
-        <input
-          id="searchActivities"
-          className="input"
-          type="text"
-          name="name"
-          placeholder="Search activities"
-        ></input>
-        <button id="searchActBtn">Search</button>
-      </form>
+      {isLogin === true ? (
+        <form onSubmit={handleSubmit}>
+          <input
+            id="createActivityForm"
+            className="input"
+            type="text"
+            name="name"
+            placeholder="Activity Name"
+          ></input>
+          <input
+            className="input"
+            type="text"
+            name="description"
+            placeholder="Activity Description"
+          ></input>
+          <button id="createActBtn">Create</button>
+        </form>
+      ) : null}
+
       {allActivities && allActivities.length
         ? allActivities.map((activity) => {
             return (
