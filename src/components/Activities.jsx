@@ -5,7 +5,6 @@ const Activities = (props) => {
   const setAllActivities = props.setAllActivities;
   const allActivities = props.allActivities;
   const isLogin = props.isLogin;
-  // const [queryActivity, setQueryActivity] = useState("");
 
   useEffect(() => {
     const getAllActivities = async () => {
@@ -25,6 +24,8 @@ const Activities = (props) => {
     const description = e.target[1].value;
     const result = await createActivity(name, description);
     console.log(result, "Created activity!");
+    setAllActivities([result, ...allActivities])
+    //update the state here to include created activity-do same in routines
   }
 
   return (

@@ -11,7 +11,7 @@ useEffect(() => {
       "http://fitnesstrac-kr.herokuapp.com/api/routines"
     );
     const result = await response.json();
-    console.log(result, "this is all routines result");
+    // console.log(result, "this is all routines result");
     setAllRoutines(result);
   };
   getAllRoutines();
