@@ -72,7 +72,6 @@ export async function loginUser(username, password) {
   console.log(result, "userInfo data");
   return result;
 }
-//get all routines
 
 //get all activities
 
@@ -110,5 +109,29 @@ export async function createActivity(name, description) {
     options
   );
   const result = await response.json();
+  return result;
+}
+
+// get all routines
+
+export async function createRoutine(name, goal, isPublic) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      goal,
+      isPublic,
+    }),
+  };
+  const response = await fetch(
+    "http://fitnesstrac-kr.herokuapp.com/api/routines",
+    options
+  );
+  const result = await response.json();
+  console.log(result, "banana");
   return result;
 }
