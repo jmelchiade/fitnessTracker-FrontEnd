@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { createActivity, getAllActivities } from "../api";
+import { createActivity } from "../api";
 
 const Activities = (props) => {
   const setAllActivities = props.setAllActivities;
   const allActivities = props.allActivities;
   const isLogin = props.isLogin;
-
   // const [queryActivity, setQueryActivity] = useState("");
 
   useEffect(() => {
@@ -14,7 +13,7 @@ const Activities = (props) => {
         "http://fitnesstrac-kr.herokuapp.com/api/activities"
       );
       const result = await response.json();
-      console.log(result, "this is activities result");
+      // console.log(result, "this is activities result");
       setAllActivities(result);
     };
     getAllActivities();
@@ -27,12 +26,6 @@ const Activities = (props) => {
     const result = await createActivity(name, description);
     console.log(result, "Created activity!");
   }
-
-  // const activities = props.activities
-  // const onSearch=() => {
-  //   const filteredSearch = activities.filter((activities) => activity.name.toLowerCase().includes(queryActivity.toLowerCase()))
-  //   props.setFilteredActivities(filteredSearch)
-  // }
 
   return (
     <div id="activity">
