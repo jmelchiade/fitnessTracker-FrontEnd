@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Register, Home, Login, Profile, Activities, Routines } from "./";
+import {
+  Navbar,
+  Register,
+  Home,
+  Login,
+  MyRoutines,
+  Activities,
+  Routines,
+} from "./";
 import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
@@ -30,18 +38,10 @@ const Main = () => {
 
         <Route
           path="login"
-          element={
-            <Login
-              isLogin={isLogin}
-              setLogin={setLogin}
-            />
-          }
+          element={<Login isLogin={isLogin} setLogin={setLogin} />}
         />
         <Route path="/" element={<Home />} />
-        <Route
-          path="profile"
-          element={<Profile />}
-        />
+        <Route path="myRoutines" element={<MyRoutines />} />
         <Route
           path="activities"
           element={
@@ -52,10 +52,15 @@ const Main = () => {
             />
           }
         />
-        <Route path="routines" element={<Routines 
-        allRoutines={allRoutines}
-        setAllRoutines={setAllRoutines}
-        isLogin={isLogin} />} 
+        <Route
+          path="routines"
+          element={
+            <Routines
+              allRoutines={allRoutines}
+              setAllRoutines={setAllRoutines}
+              isLogin={isLogin}
+            />
+          }
         />
       </Routes>
       <h1>This is Main Content</h1>
