@@ -7,6 +7,8 @@ import { createRoutine } from "../api";
 
 const MyRoutines = (props) => {
   const isLogin = props.isLogin;
+  const allRoutines = props.allRoutines;
+  const setAllRoutines = props.setAllRoutines;
 
   const [checked, setChecked] = useState(false);
 
@@ -18,6 +20,7 @@ const MyRoutines = (props) => {
     console.log(name, goal, isPublic, "form data!!");
     const result = await createRoutine(name, goal, isPublic);
     console.log(result, "Created routine data!");
+    setAllRoutines([result, ...allRoutines]);
   }
 
   return (
@@ -39,9 +42,11 @@ const MyRoutines = (props) => {
         ></input>
         <div>
           <label>
-            <input type="checkbox"
-            defaultChecked = {checked}
-            onChange={() => setChecked(!checked)}></input>
+            <input
+              type="checkbox"
+              defaultChecked={checked}
+              onChange={() => setChecked(!checked)}
+            ></input>
             Make routine public
           </label>
         </div>
