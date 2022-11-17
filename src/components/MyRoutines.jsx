@@ -26,24 +26,14 @@ const MyRoutines = (props) => {
 
 
   useEffect(() => {
-    const getUserRoutines = async (username) => {
-      const token = localStorage.getItem("token");
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await fetch(
-        `http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`,
-        options
-      );
-      const result = await response.json();
-      console.log("this is user routines data!", result);
-      setUserRoutines(result);
-    };
-    getUserRoutines();
-  }, []);
+    const fetchUserRoutines = async () => {
+      const fetchedUserRoutines = await getRoutinesByUsername(currentUserData.username)
+      console.log("fetched user routine data", fetchUserRoutines)
+      setUserRoutines(fetchedUserRoutines)
+    }
+    fetchUserRoutines()
+
+  }, [currentUserData]);
 
   return (
     <div>
