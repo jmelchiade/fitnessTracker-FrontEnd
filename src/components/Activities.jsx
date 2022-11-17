@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 // import ViewportList from "react-viewport-list";
 import { createActivity } from "../api";
 
+//do we want to add random images to the activities?
+
 const Activities = (props) => {
   const setAllActivities = props.setAllActivities;
   const allActivities = props.allActivities.sort((a, b) => {
