@@ -1,10 +1,9 @@
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 const COHORT = "2209-FTB-ET-WEB-FT";
 
-
 // this is our function to get the local stored token, add this locally to each function where it is required
 // const token = localStorage.getItem("token");
-
+//set all api functions to a try/catch for credit!!
 
 //register user
 export async function registerUser(username, password) {
@@ -32,7 +31,6 @@ export async function registerUser(username, password) {
   // return result.data.token;
   return result;
 }
-
 
 //login user
 export async function loginUser(username, password) {
@@ -63,14 +61,33 @@ export async function getUserInfo() {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-   
-  }
-  const response = await fetch("https://fitnesstrac-kr.herokuapp.com/api/users/me", options);
+  };
+  const response = await fetch(
+    "https://fitnesstrac-kr.herokuapp.com/api/users/me",
+    options
+  );
   const result = await response.json();
-  console.log(result, "logged in user data!")
+  console.log(result, "logged in user data!");
   return result;
 }
 
+//get all user routines
+export async function getRoutinesByUsername() {
+  const token = localStorage.getItem("token");
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    "http://fitnesstrac-kr.herokuapp.com/api/users/:username/routines",
+    options
+  );
+  const result = await response.json();
+  console.log("this is username routine data!", result);
+  return result;
+}
 
 //get all activities
 export async function getAllActivities() {
@@ -87,7 +104,6 @@ export async function getAllActivities() {
   console.log("pineapple", result);
   return result;
 }
-
 
 //create new activity
 export async function createActivity(name, description) {

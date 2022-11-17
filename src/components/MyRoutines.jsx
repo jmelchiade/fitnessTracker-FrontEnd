@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { createRoutine } from "../api";
+import React, { useState, useEffect } from "react";
+import { createRoutine, getRoutinesByUsername } from "../api";
 
 //may need to add some functionality later:
 //clear the form fields?
@@ -9,8 +9,8 @@ const MyRoutines = (props) => {
   const isLogin = props.isLogin;
   const allRoutines = props.allRoutines;
   const setAllRoutines = props.setAllRoutines;
-
   const [checked, setChecked] = useState(false);
+  const [userRoutines, setUserRoutines] = useState({});
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +22,26 @@ const MyRoutines = (props) => {
     console.log(result, "Created routine data!");
     setAllRoutines([result, ...allRoutines]);
   }
+
+  useEffect(() => {
+    const getUserRoutines = async () => {
+      const token = localStorage.getItem("token");
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await fetch(
+        "http://fitnesstrac-kr.herokuapp.com/api/users/:username/routines",
+        options
+      );
+      const result = await response.json();
+      console.log("this is user routines data!", result);
+      setUserRoutines(result);
+    };
+    getUserRoutines();
+  }, []);
 
   return (
     <div>

@@ -10,16 +10,13 @@ import {
   Footer,
 } from "./";
 import { Routes, Route } from "react-router-dom";
-import { getUserInfo } from "../api";
 
 const Main = () => {
   const [isLogin, setLogin] = useState(false);
   //piece of state containing user data (object with id, username)
-  const [currentUserData, setCurrentUserData] = useState({})
+  const [currentUserData, setCurrentUserData] = useState({});
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
-
-
 
   useEffect(() => {
     //we should only have successfully stored local token data
@@ -49,8 +46,26 @@ const Main = () => {
           path="login"
           element={<Login isLogin={isLogin} setLogin={setLogin} />}
         />
-        <Route path="/" element={<Home isLogin={isLogin} setLogin={setLogin} currentUserData={currentUserData} />} />
-        <Route path="myRoutines" element={<MyRoutines />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              isLogin={isLogin}
+              setLogin={setLogin}
+              currentUserData={currentUserData}
+            />
+          }
+        />
+        <Route
+          path="myRoutines"
+          element={
+            <MyRoutines
+              allRoutines={allRoutines}
+              setAllRoutines={setAllRoutines}
+              isLogin={isLogin}
+            />
+          }
+        />
         <Route
           path="activities"
           element={
