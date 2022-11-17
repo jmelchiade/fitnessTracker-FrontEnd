@@ -7,6 +7,7 @@ import {
   MyRoutines,
   Activities,
   Routines,
+  Footer,
 } from "./";
 import { Routes, Route } from "react-router-dom";
 
@@ -16,16 +17,19 @@ const Main = () => {
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     setLogin();
+  //   }
+  // }, []);
+  //add use effect for checking if token exists in local storage for auto logging in user
+  //16nov22 - added useEffect for auto Login; sets login to ALWAYS true... sets all buttons to hide... Jen
 
-  //add use effect for checking if token exists in local storage for auto logging in user 
-  
   return (
     <div id="main">
       <Navbar isLogin={isLogin} setLogin={setLogin} />
       <Routes>
         <Route path="register" element={<Register setLogin={setLogin} />} />
-
-        <Route path="home" element={<Home />} />
 
         <Route
           path="login"
@@ -53,8 +57,10 @@ const Main = () => {
             />
           }
         />
+        <Route path="footer" element={<Footer />} />
       </Routes>
       <h1>This is Main Content</h1>
+      <Footer />
     </div>
   );
 };

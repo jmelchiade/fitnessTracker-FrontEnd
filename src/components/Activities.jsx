@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+// import ViewportList from "react-viewport-list";
 import { createActivity } from "../api";
 
 const Activities = (props) => {
   const setAllActivities = props.setAllActivities;
-  const allActivities = props.allActivities;
+  const allActivities = props.allActivities.sort((a, b) => {
+    let date1 = new Date(a.createdAt);
+    let date2 = new Date(b.createdAt);
+    return date2.getTime() - date1.getTime();
+  });
   const isLogin = props.isLogin;
 
   useEffect(() => {
@@ -24,12 +29,13 @@ const Activities = (props) => {
     const description = e.target[1].value;
     const result = await createActivity(name, description);
     console.log(result, "Created activity!");
-    setAllActivities([result, ...allActivities])
+    setAllActivities([result, ...allActivities]);
     //update the state here to include created activity-do same in routines
   }
 
   return (
     <div id="activity">
+      {/* <ViewportList viewportRef={ref} items={items} itemMinSize={40} margin={8}> */}
       {isLogin === true ? (
         <form onSubmit={handleSubmit}>
           <input
@@ -59,6 +65,7 @@ const Activities = (props) => {
             );
           })
         : null}
+      {/* </ViewportList> */}
     </div>
   );
 };
