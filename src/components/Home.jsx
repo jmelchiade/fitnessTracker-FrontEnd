@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from "react";
 import { getUserInfo } from "../api";
 
-const Home = () => {
-const [currentUser, setCurrentUser] = useState([]);
+const Home = (props) => {
+// const [currentUser, setCurrentUser] = useState([]);
+const currentUserData = props.currentUserData;
+const isLogin = props.isLogin;
+const setLogin = props.isLogin;
 
-// const userData =  getUserInfo();
-
-// useEffect(() => {
-//   const userData = await getUserInfo();
-// }, []);
-
+console.log(currentUserData)
 
   return (
     <div id="home">

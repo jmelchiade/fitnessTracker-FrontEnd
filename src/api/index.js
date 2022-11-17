@@ -2,8 +2,8 @@ const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 const COHORT = "2209-FTB-ET-WEB-FT";
 
 
-// this is our function to get the local stored token
-const token = localStorage.getItem("token");
+// this is our function to get the local stored token, add this locally to each function where it is required
+// const token = localStorage.getItem("token");
 
 
 //register user
@@ -57,15 +57,13 @@ export async function loginUser(username, password) {
 
 //This route is used to grab an already logged in user's relevant data. It is mostly helpful for verifying the user has a valid token (and is thus logged in). You must pass a valid token with this request, or it will be rejected.
 export async function getUserInfo() {
+  const token = localStorage.getItem("token");
   const options = {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    // body: JSON.stringify({
-    //   id,
-    //   username,
-    // }),
+   
   }
   const response = await fetch("https://fitnesstrac-kr.herokuapp.com/api/users/me", options);
   const result = await response.json();
@@ -93,6 +91,7 @@ export async function getAllActivities() {
 
 //create new activity
 export async function createActivity(name, description) {
+  const token = localStorage.getItem("token");
   const options = {
     method: "POST",
     headers: {
@@ -114,6 +113,7 @@ export async function createActivity(name, description) {
 
 // create routine
 export async function createRoutine(name, goal, isPublic) {
+  const token = localStorage.getItem("token");
   const options = {
     method: "POST",
     headers: {
