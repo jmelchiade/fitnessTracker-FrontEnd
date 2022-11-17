@@ -10,17 +10,31 @@ import {
   Footer,
 } from "./";
 import { Routes, Route } from "react-router-dom";
+import { getUserInfo } from "../api";
 
 const Main = () => {
   const [isLogin, setLogin] = useState(false);
-  // const [userLoggedIn, setUserLoggedIn] = useState({});
+  //piece of state containing user data (object with id, username)
+  const [currentUserData, setCurrentUserData] = useState({})
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
 
+
+
+  useEffect(() => {
+    //we should only have successfully stored local token data
+    //from our if/else in login/register components
+    if (localStorage.getItem("token")) {
+      setLogin(true);
+    }
+  }, []);
+
   // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     setLogin();
+  //   async function getCurrentUserInfo() {
+  //     const userInfo = await getUserInfo();
+  //     setCurrentUserData(userInfo)
   //   }
+  // getCurrentUserInfo();
   // }, []);
   //add use effect for checking if token exists in local storage for auto logging in user
   //16nov22 - added useEffect for auto Login; sets login to ALWAYS true... sets all buttons to hide... Jen
@@ -35,7 +49,7 @@ const Main = () => {
           path="login"
           element={<Login isLogin={isLogin} setLogin={setLogin} />}
         />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home isLogin={isLogin} setLogin={setLogin} currentUserData={currentUserData} />} />
         <Route path="myRoutines" element={<MyRoutines />} />
         <Route
           path="activities"
