@@ -71,7 +71,7 @@ export async function getUserInfo() {
   return result;
 }
 
-//get all user routines
+//get all user routines via username
 export async function getRoutinesByUsername() {
   const token = localStorage.getItem("token");
   const options = {

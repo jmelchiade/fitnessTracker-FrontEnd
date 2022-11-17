@@ -10,6 +10,7 @@ import {
   Footer,
 } from "./";
 import { Routes, Route } from "react-router-dom";
+import {getUserInfo} from "../api";
 
 const Main = () => {
   const [isLogin, setLogin] = useState(false);
@@ -26,13 +27,14 @@ const Main = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   async function getCurrentUserInfo() {
-  //     const userInfo = await getUserInfo();
-  //     setCurrentUserData(userInfo)
-  //   }
-  // getCurrentUserInfo();
-  // }, []);
+  useEffect(() => {
+      async function getCurrentUserInfo() {
+        const userInfo = await getUserInfo();
+        console.log("collected user data!", userInfo)
+        setCurrentUserData(userInfo)
+    };
+    getCurrentUserInfo();
+  }, []);
   //add use effect for checking if token exists in local storage for auto logging in user
   //16nov22 - added useEffect for auto Login; sets login to ALWAYS true... sets all buttons to hide... Jen
 
@@ -63,6 +65,7 @@ const Main = () => {
               allRoutines={allRoutines}
               setAllRoutines={setAllRoutines}
               isLogin={isLogin}
+              currentUserData={currentUserData}
             />
           }
         />
