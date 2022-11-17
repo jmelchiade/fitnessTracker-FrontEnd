@@ -71,8 +71,9 @@ export async function getUserInfo() {
   return result;
 }
 
-//get all user routines
-export async function getRoutinesByUsername() {
+//get all user routines via username
+//may need to modify to get func working for logged in user vs random user (no token local)
+export async function getRoutinesByUsername(username) {
   const token = localStorage.getItem("token");
   const options = {
     headers: {
@@ -81,7 +82,7 @@ export async function getRoutinesByUsername() {
     },
   };
   const response = await fetch(
-    "http://fitnesstrac-kr.herokuapp.com/api/users/:username/routines",
+    `http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`,
     options
   );
   const result = await response.json();
