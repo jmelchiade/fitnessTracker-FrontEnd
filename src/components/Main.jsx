@@ -74,12 +74,12 @@ const Main = () => {
           }
         />
         <Route
-          path="myRoutines/edit"
+          path="/edit"
           element={
             <EditRoutine
               isLogin={isLogin}
               currentUserData={currentUserData}
-              selectedUserRoutine={selectedUserRoutine }
+              selectedUserRoutine={selectedUserRoutine}
             />
           }
         />
