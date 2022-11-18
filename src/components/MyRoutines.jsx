@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { createRoutine, getRoutinesByUsername } from "../api";
 
 const MyRoutines = (props) => {
-  const isLogin = props.isLogin;
-  const allRoutines = props.allRoutines;
-
-  const setAllRoutines = props.setAllRoutines;
   const [checked, setChecked] = useState(false);
   const [userRoutines, setUserRoutines] = useState({});
-  const [selectedUserRoutine, setSelectedUserRoutine] = useState({});
 
+  const setSelectedUserRoutine = props.setSelectedUserRoutine
+  const selectedUserRoutine = props.selectedUserRoutine
+  const isLogin = props.isLogin;
+  const allRoutines = props.allRoutines;
+  const setAllRoutines = props.setAllRoutines;
   const currentUserData = props.currentUserData;
 
   async function handleSubmit(e) {
@@ -30,10 +30,13 @@ const MyRoutines = (props) => {
     const routineToEdit = userRoutines.filter((routine) => {
       return routine.id == toEdit;
     });
-    const selectedRoutine = routineToEdit[0];
-    console.log(selectedRoutine, "edit routine");
-    setSelectedUserRoutine(selectedRoutine);
+      console.log(routineToEdit,"routine to edit");
+
+    setSelectedUserRoutine(routineToEdit)
     console.log(selectedUserRoutine, "user routine");
+
+    // const selectedRoutine = routineToEdit[0];
+    // setSelectedUserRoutine(selectedRoutine);
   }
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const MyRoutines = (props) => {
       const fetchedUserRoutines = await getRoutinesByUsername(
         currentUserData.username
       );
-      console.log("fetched user routine data", fetchUserRoutines);
+      console.log("fetched user routine data", fetchedUserRoutines);
       setUserRoutines(fetchedUserRoutines);
     };
     fetchUserRoutines();
