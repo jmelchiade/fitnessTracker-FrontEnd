@@ -19,6 +19,7 @@ const Main = () => {
   const [currentUserData, setCurrentUserData] = useState({});
   const [allActivities, setAllActivities] = useState([]);
   const [allRoutines, setAllRoutines] = useState([]);
+  const [selectedUserRoutine, setSelectedUserRoutine] = useState({});
 
   useEffect(() => {
     //we should only have successfully stored local token data
@@ -67,6 +68,18 @@ const Main = () => {
               setAllRoutines={setAllRoutines}
               isLogin={isLogin}
               currentUserData={currentUserData}
+              selectedUserRoutine={selectedUserRoutine}
+              setSelectedUserRoutine={setSelectedUserRoutine}
+            />
+          }
+        />
+        <Route
+          path="myRoutines/edit"
+          element={
+            <EditRoutine
+              isLogin={isLogin}
+              currentUserData={currentUserData}
+              selectedUserRoutine={selectedUserRoutine }
             />
           }
         />
