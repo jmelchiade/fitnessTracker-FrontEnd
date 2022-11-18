@@ -8,6 +8,8 @@ import { createRoutine, getRoutinesByUsername } from "../api";
 const MyRoutines = (props) => {
   const isLogin = props.isLogin;
   const allRoutines = props.allRoutines;
+  // const ascending = [...allRoutines].sort((a, b) => a.id - b.id)
+
   const setAllRoutines = props.setAllRoutines;
   const [checked, setChecked] = useState(false);
   const [userRoutines, setUserRoutines] = useState({});
@@ -24,15 +26,15 @@ const MyRoutines = (props) => {
     setAllRoutines([result, ...allRoutines]);
   }
 
-
   useEffect(() => {
     const fetchUserRoutines = async () => {
-      const fetchedUserRoutines = await getRoutinesByUsername(currentUserData.username)
-      console.log("fetched user routine data", fetchUserRoutines)
-      setUserRoutines(fetchedUserRoutines)
-    }
-    fetchUserRoutines()
-
+      const fetchedUserRoutines = await getRoutinesByUsername(
+        currentUserData.username
+      );
+      console.log("fetched user routine data", fetchUserRoutines);
+      setUserRoutines(fetchedUserRoutines);
+    };
+    fetchUserRoutines();
   }, [currentUserData]);
 
   return (
