@@ -31,18 +31,19 @@ body {
 #registerButton,
 #activitiesButton,
 #loginButton,
-#logoutButton,
+#logOutButton,
 #myRoutinesButton,
 #routinesButton {
   align-items: center;
   border-radius: 25px;
   padding: 10px;
   margin: 20px;
+  text-decoration: none;
 }
 
 #homeButton:hover,
 #loginButton:hover,
-#logoutButton:hover,
+#logOutButton:hover,
 #myRoutinesButton:hover,
 #registerButton:hover,
 #activitiesButton:hover,
@@ -50,6 +51,7 @@ body {
   background-color: darkblue;
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 
 #activity {

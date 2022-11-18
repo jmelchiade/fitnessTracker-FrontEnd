@@ -1,21 +1,21 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 const Routines = (props) => {
-const isLogin = props.isLogin;
-const allRoutines = props.allRoutines;
-const setAllRoutines = props.setAllRoutines;
+  const isLogin = props.isLogin;
+  const allRoutines = props.allRoutines;
+  const setAllRoutines = props.setAllRoutines;
 
-useEffect(() => {
-  const getAllRoutines = async () => {
-    const response = await fetch(
-      "http://fitnesstrac-kr.herokuapp.com/api/routines"
-    );
-    const result = await response.json();
-    // console.log(result, "this is all routines result");
-    setAllRoutines(result);
-  };
-  getAllRoutines();
-}, []);
+  useEffect(() => {
+    const getAllRoutines = async () => {
+      const response = await fetch(
+        "http://fitnesstrac-kr.herokuapp.com/api/routines"
+      );
+      const result = await response.json();
+      // console.log(result, "this is all routines result");
+      setAllRoutines(result);
+    };
+    getAllRoutines();
+  }, []);
 
   return (
     <div id="routines">
@@ -35,13 +35,12 @@ useEffect(() => {
                           <div>Description: {activity.description} </div>
                           <div>Duration: {activity.duration}</div>
                           <div>Count: {activity.count}</div>
-                        </div>  
-                      )
+                        </div>
+                      );
                     })
                   ) : (
                     <div>No activities found</div>
-                  )
-                }
+                  )}
                 </div>
               </div>
             );
