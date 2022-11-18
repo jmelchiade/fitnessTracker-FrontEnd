@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { createRoutine, getRoutinesByUsername } from "../api";
+import { useNavigate } from "react-router";
+// import {EditRoutine} from "./";
 
 const MyRoutines = (props) => {
+  const navigate = useNavigate();
+
   const [checked, setChecked] = useState(false);
   const [userRoutines, setUserRoutines] = useState({});
 
-  const setSelectedUserRoutine = props.setSelectedUserRoutine
-  const selectedUserRoutine = props.selectedUserRoutine
+  const setSelectedUserRoutine = props.setSelectedUserRoutine;
+  const selectedUserRoutine = props.selectedUserRoutine;
   const isLogin = props.isLogin;
   const allRoutines = props.allRoutines;
   const setAllRoutines = props.setAllRoutines;
@@ -30,10 +34,11 @@ const MyRoutines = (props) => {
     const routineToEdit = userRoutines.filter((routine) => {
       return routine.id == toEdit;
     });
-      console.log(routineToEdit,"routine to edit");
+    console.log(routineToEdit, "routine to edit");
 
-    setSelectedUserRoutine(routineToEdit)
+    setSelectedUserRoutine(routineToEdit);
     console.log(selectedUserRoutine, "user routine");
+    navigate("/edit");
 
     // const selectedRoutine = routineToEdit[0];
     // setSelectedUserRoutine(selectedRoutine);

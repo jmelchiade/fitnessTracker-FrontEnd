@@ -3,6 +3,7 @@ const COHORT = "2209-FTB-ET-WEB-FT";
 
 // this is our function to get the local stored token, add this locally to each function where it is required
 // const token = localStorage.getItem("token");
+
 //set all api functions to a try/catch for credit!!
 
 //register user
@@ -145,6 +146,26 @@ export async function createRoutine(name, goal, isPublic) {
   };
   const response = await fetch(
     "http://fitnesstrac-kr.herokuapp.com/api/routines",
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
+//update a routine
+
+export async function updateRoutine(name, goal, isPublic) {
+  const token = localStorage.getItem("token");
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify({
+      name,
+      goal,
+      isPublic,
+    }),
+  };
+  const response = await fetch(
+    `http://fitnesstrac-kr.herokuapp.com/api/routines${id}`,
     options
   );
   const result = await response.json();
