@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { createRoutine, getRoutinesByUsername } from "../api";
 
-//may need to add some functionality later:
-//clear the form fields?
-//maybe display users post?
-
 const MyRoutines = (props) => {
   const isLogin = props.isLogin;
   const allRoutines = props.allRoutines;
-  // const ascending = [...allRoutines].sort((a, b) => a.id - b.id)
 
   const setAllRoutines = props.setAllRoutines;
   const [checked, setChecked] = useState(false);
   const [userRoutines, setUserRoutines] = useState({});
+  const [selectedUserRoutine, setSelectedUserRoutine] = useState({});
+
   const currentUserData = props.currentUserData;
 
   async function handleSubmit(e) {
@@ -24,6 +21,19 @@ const MyRoutines = (props) => {
     const result = await createRoutine(name, goal, isPublic);
     console.log(result, "Created routine data!");
     setAllRoutines([result, ...allRoutines]);
+  }
+
+  async function handleEdit(e) {
+    e.preventDefault();
+    const toEdit = e.target.id;
+    console.log(toEdit, "clicked routine");
+    const routineToEdit = userRoutines.filter((routine) => {
+      return routine.id == toEdit;
+    });
+    const selectedRoutine = routineToEdit[0];
+    console.log(selectedRoutine, "edit routine");
+    setSelectedUserRoutine(selectedRoutine);
+    console.log(selectedUserRoutine, "user routine");
   }
 
   useEffect(() => {
@@ -66,6 +76,46 @@ const MyRoutines = (props) => {
         </div>
         <button>Create Routine</button>
       </form>
+      <div id="routines">
+        {userRoutines && userRoutines.length
+          ? userRoutines.map((routine) => {
+              return (
+                <div id="myRoutines" key={`routine-${routine.id}`}>
+                  <div>Routine Name: {routine.name}</div>
+                  <div>Goal: {routine.goal}</div>
+                  <div>Creator: {routine.creatorName}</div>
+                  <div>
+                    {routine.activities && routine.activities.length ? (
+                      routine.activities.map((activity) => {
+                        return (
+                          <div key={`activity-${activity.id}`}>
+                            <div>Activity Name: {activity.name}</div>
+                            <div>Description: {activity.description} </div>
+                            <div>Duration: {activity.duration}</div>
+                            <div>Count: {activity.count}</div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div>No activities found</div>
+                    )}
+                  </div>
+                  <div>
+                    <button
+                      className="editRoutineButton"
+                      id={routine.id ? `${routine.id}` : null}
+                      onClick={(e) => {
+                        handleEdit(e);
+                      }}
+                    >
+                      Edit Routine
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };

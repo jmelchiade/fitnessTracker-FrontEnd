@@ -5,6 +5,10 @@ import { createActivity } from "../api";
 //do we want to add random images to the activities?
 
 const Activities = (props) => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+
   const setAllActivities = props.setAllActivities;
   const allActivities = props.allActivities.sort((a, b) => {
     let date1 = new Date(a.createdAt);
@@ -27,35 +31,54 @@ const Activities = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const name = e.target[0].value;
-    const description = e.target[1].value;
+    // const name = e.target[0].value;
+    // const description = e.target[1].value;
     const result = await createActivity(name, description);
     console.log(result, "Created activity!");
-    setAllActivities([result, ...allActivities]);
-    //update the state here to include created activity-do same in routines
+
+    if (result.error) {
+      const message = result.error;
+      setError(message);
+    } else {
+      setAllActivities([result, ...allActivities]);
+    }
+    setDescription("");
+    setName("");
   }
 
   return (
     <div id="activity">
       {/* <ViewportList viewportRef={ref} items={items} itemMinSize={40} margin={8}> */}
       {isLogin === true ? (
-        <form onSubmit={handleSubmit}>
+        <form id="createActivityForm" onSubmit={handleSubmit}>
           <input
-            id="createActivityForm"
             className="input"
             type="text"
-            name="name"
+            // name="name"
+            required
             placeholder="Activity Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           ></input>
           <input
             className="input"
             type="text"
-            name="description"
+            // name="description"
+            required
             placeholder="Activity Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></input>
           <button id="createActBtn">Create</button>
         </form>
       ) : null}
+      <div>
+        {error ? (
+          <div>
+            <h3>{`${error}`}</h3>
+          </div>
+        ) : null}
+      </div>
 
       {allActivities && allActivities.length
         ? allActivities.map((activity) => {
