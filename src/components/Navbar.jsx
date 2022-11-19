@@ -3,12 +3,16 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = (props) => {
   const isLogin = props.isLogin;
+  const username = localStorage.getItem("username");
   const setLogin = props.setLogin;
   return (
     <div>
       <span id="upperNavContainer"></span>
       <div id="navbar">
-        <b>FITNESS TRACKER</b>
+        <b>
+          FITNESS TRACKER{" "}
+          <div>{isLogin === true ? <h5>{`${username}`}</h5> : null}</div>
+        </b>
         {props.isLogin === false ? (
           <div>
             <button id="registerButton">
