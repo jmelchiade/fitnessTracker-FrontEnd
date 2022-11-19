@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 const EditRoutine = (props) => {
   const selectedUserRoutine = props.selectedUserRoutine;
+  const setCurrentUserData = props.setCurrentUserData;
   const [routineID, setRoutineID] = useState("");
   const [updatedName, setUpdatedName] = useState("");
   const [updatedGoal, setUpdatedGoal] = useState("");
@@ -23,7 +24,7 @@ const EditRoutine = (props) => {
 
   async function submitUpdate() {
     const tempToken = localStorage.getItem("token");
-    const placeholder = await updateRoutine(
+    const setCurrentUserData = await updateRoutine(
       updatedName,
       routineID,
       updatedGoal,
@@ -31,11 +32,11 @@ const EditRoutine = (props) => {
     );
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-    const updatedRoutine = await updateRoutine(formDetails, routine.id);
-  }
+  //   const updatedRoutine = await updateRoutine(formDetails, routine.id);
+  // }
 
   // const [updateRoutine, setUpdateRoutine] = useState({
   //   name: "",
@@ -92,15 +93,15 @@ const EditRoutine = (props) => {
             type="text"
             required
             value={updatedName}
-            placeholder="name"
-            onChange={(event) => setUpdatedName(event.target.value)}
+            placeholder="insert name"
+            onChange={(e) => setUpdatedName(e.target.value)}
           />
           <input
             type="text"
             required
             value={updatedGoal}
-            placeholder="goal"
-            onChange={(event) => setUpdatedGoal(event.target.value)}
+            placeholder="insert goal"
+            onChange={(e) => setUpdatedGoal(e.target.value)}
           />
           <h4>Update Privacy</h4>
 
