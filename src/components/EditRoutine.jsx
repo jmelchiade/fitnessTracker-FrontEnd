@@ -3,6 +3,7 @@ import { updateRoutine } from "../api";
 import { useNavigate } from "react-router";
 
 const EditRoutine = (props) => {
+  const navigate = useNavigate();
   const selectedUserRoutine = props.selectedUserRoutine;
   const setCurrentUserData = props.setCurrentUserData;
   const [routineID, setRoutineID] = useState("");
@@ -30,6 +31,7 @@ const EditRoutine = (props) => {
       updatedGoal,
       tempToken
     );
+    navigate("/myroutines");
   }
 
   // async function handleSubmit(e) {
