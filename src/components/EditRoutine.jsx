@@ -13,10 +13,10 @@ const EditRoutine = (props) => {
   });
   // const currentUserData = props.currentUserData;
 
-  function handleChange(event) {
-    event.preventDefault();
-    const toUpdate = event.target.id;
-    const update = event.target.value;
+  function handleChange(e) {
+    e.preventDefault();
+    const toUpdate = e.target.id;
+    const update = e.target.value;
     const updatedForm = { ...formDetails, [toUpdate]: update };
     setFormDetails(updatedForm);
   }
@@ -31,10 +31,10 @@ const EditRoutine = (props) => {
     );
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-    const updatedRoutine = await updateRoutine(formDetails, routineID);
+    const updatedRoutine = await updateRoutine(formDetails, routine.id);
   }
 
   // const [updateRoutine, setUpdateRoutine] = useState({
@@ -110,13 +110,24 @@ const EditRoutine = (props) => {
           </select>
           <button onClick={() => submitUpdate()}>Submit updated routine</button>
         </div>
-
-        {/* <Link to={`routines/${routines.id}`}>
-                <button id="seeDetailsBtn">Back to Account Home</button>
-              </Link> */}
       </div>
+      {/* <div>
+        <button
+          className="deleteButton"
+          id={routine.id ? `${routine.id}` : null}
+          onClick={(event) => {
+            handleDelete(event);
+          }}
+        >
+          Delete Routine
+        </button>
+      </div> */}
     </div>
   );
 };
-
+{
+  /* <Link to={`routines/${routines.id}`}>
+                <button id="seeDetailsBtn">Back to Account Home</button>
+              </Link> */
+}
 export default EditRoutine;
