@@ -105,7 +105,6 @@ const Main = () => {
         />
         <Route path="footer" element={<Footer />} />
       </Routes>
-      <h1>This is Main Content</h1>
       <Footer />
     </div>
   );

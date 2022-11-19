@@ -49,6 +49,7 @@ const Activities = (props) => {
   return (
     <div id="activity">
       {/* <ViewportList viewportRef={ref} items={items} itemMinSize={40} margin={8}> */}
+      <h3>Create new activity</h3>
       {isLogin === true ? (
         <form id="createActivityForm" onSubmit={handleSubmit}>
           <input
@@ -72,6 +73,7 @@ const Activities = (props) => {
           <button id="createActBtn">Create</button>
         </form>
       ) : null}
+      <br></br>
       <div>
         {error ? (
           <div>
@@ -84,8 +86,16 @@ const Activities = (props) => {
         ? allActivities.map((activity) => {
             return (
               <div id="allActivities" key={`activity-${activity.id}`}>
-                <div id="activityName"> name: {activity.name}</div>
-                <div id="activityDes"> description: {activity.description}</div>
+                <div id="activityName">
+                  {" "}
+                  <b>name: </b>
+                  {activity.name}
+                </div>
+                <div id="activityDes">
+                  {" "}
+                  <b>description:</b> {activity.description}
+                </div>
+                <br></br>
               </div>
             );
           })

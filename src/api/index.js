@@ -172,3 +172,23 @@ export async function updateRoutine(id, name, goal, token) {
     })
     .catch(console.error);
 }
+
+//delete a routine
+
+export async function deleteRoutine(id, token, setRoutineDelete) {
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      if (result.success == true) {
+        setDeleteMessage("Routine deleted!");
+      }
+    })
+    .catch(console.error);
+}

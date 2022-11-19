@@ -8,7 +8,7 @@ const Navbar = (props) => {
     <div>
       <span id="upperNavContainer"></span>
       <div id="navbar">
-        Fitness Tracker Navbar
+        <b>FITNESS TRACKER</b>
         {props.isLogin === false ? (
           <div>
             <button id="registerButton">
@@ -23,7 +23,6 @@ const Navbar = (props) => {
             </button>
           </div>
         ) : null}
-
         {props.isLogin ? (
           <button id="myRoutinesButton">
             <NavLink id="navMyRoutines" to="myroutines">
@@ -31,11 +30,14 @@ const Navbar = (props) => {
             </NavLink>
           </button>
         ) : null}
-
         {props.isLogin ? (
-          <button id="logOutButton" onClick={() => { props.setLogin(false);
-          // localStorage.removeItem("token");
-            }}>
+          <button
+            id="logOutButton"
+            onClick={() => {
+              props.setLogin(false);
+              // localStorage.removeItem("token");
+            }}
+          >
             Log Out
           </button>
         ) : null}
