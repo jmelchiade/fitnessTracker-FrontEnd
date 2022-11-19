@@ -49,29 +49,32 @@ const Activities = (props) => {
   return (
     <div id="activity">
       {/* <ViewportList viewportRef={ref} items={items} itemMinSize={40} margin={8}> */}
-      <h3>Create new activity</h3>
+
       {isLogin === true ? (
-        <form id="createActivityForm" onSubmit={handleSubmit}>
-          <input
-            className="input"
-            type="text"
-            // name="name"
-            required
-            placeholder="Activity Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-          <input
-            className="input"
-            type="text"
-            // name="description"
-            required
-            placeholder="Activity Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></input>
-          <button id="createActBtn">Create</button>
-        </form>
+        <div>
+          <h3>Create new activity</h3>
+          <form id="createActivityForm" onSubmit={handleSubmit}>
+            <input
+              className="input"
+              type="text"
+              // name="name"
+              required
+              placeholder="Activity Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+            <input
+              className="input"
+              type="text"
+              // name="description"
+              required
+              placeholder="Activity Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></input>
+            <button id="createActBtn">Create</button>
+          </form>
+        </div>
       ) : null}
       <br></br>
       <div>
@@ -87,12 +90,10 @@ const Activities = (props) => {
             return (
               <div id="allActivities" key={`activity-${activity.id}`}>
                 <div id="activityName">
-                  {" "}
                   <b>name: </b>
                   {activity.name}
                 </div>
                 <div id="activityDes">
-                  {" "}
                   <b>description:</b> {activity.description}
                 </div>
                 <br></br>
