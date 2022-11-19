@@ -3,6 +3,7 @@ import { registerUser } from "../api";
 import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,6 +26,7 @@ const Register = (props) => {
       localStorage.setItem("username", username);
       props.setLogin(true);
     }
+    navigate("/myRoutines");
     // const token = userData.token;
     // localStorage.removeItem("token");
     // localStorage.setItem("token", token);
