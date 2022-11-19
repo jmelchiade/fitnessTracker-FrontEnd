@@ -3,12 +3,14 @@ import { updateRoutine } from "../api";
 import { useNavigate } from "react-router";
 
 const EditRoutine = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const selectedUserRoutine = props.selectedUserRoutine;
+  const setSelectedUserRoutine = props.setSelectedUserRoutine;
   const setCurrentUserData = props.setCurrentUserData;
-  const [routineID, setRoutineID] = useState("");
-  const [updatedName, setUpdatedName] = useState("");
-  const [updatedGoal, setUpdatedGoal] = useState("");
+  const userRoutines = props.userRoutines;
+  const setUserRoutines = props.setUserRoutines;
+  const [updateName, setUpdatedName] = useState("");
+  const [updateGoal, setUpdatedGoal] = useState("");
   const [formDetails, setFormDetails] = useState({
     name: "",
     goal: "",
@@ -21,17 +23,14 @@ const EditRoutine = (props) => {
     const update = e.target.value;
     const updatedForm = { ...formDetails, [toUpdate]: update };
     setFormDetails(updatedForm);
+    console.log(updatedForm);
   }
 
   async function submitUpdate() {
-    const tempToken = localStorage.getItem("token");
-    const setCurrentUserData = await updateRoutine(
-      updatedName,
-      routineID,
-      updatedGoal,
-      tempToken
-    );
-    navigate("/myroutines");
+    const result = await updateRoutine(updateName, updateGoal);
+    console.log(result, "updated banana");
+    setSelectedUserRoutine([result, ...selectedUserRoutine]);
+    // navigate("/myroutines");
   }
 
   // async function handleSubmit(e) {
@@ -39,12 +38,6 @@ const EditRoutine = (props) => {
 
   //   const updatedRoutine = await updateRoutine(formDetails, routine.id);
   // }
-
-  // const [updateRoutine, setUpdateRoutine] = useState({
-  //   name: "",
-  //   goal: "",
-  //   isPublic: null,
-  // });
 
   // async function handleChange(e) {
   //   e.preventDefault();
@@ -94,14 +87,14 @@ const EditRoutine = (props) => {
           <input
             type="text"
             required
-            value={updatedName}
+            value={updateName}
             placeholder="insert name"
             onChange={(e) => setUpdatedName(e.target.value)}
           />
           <input
             type="text"
             required
-            value={updatedGoal}
+            value={updateGoal}
             placeholder="insert goal"
             onChange={(e) => setUpdatedGoal(e.target.value)}
           />
