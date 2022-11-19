@@ -154,20 +154,21 @@ export async function createRoutine(name, goal, isPublic) {
 
 //update a routine
 
-export async function updateRoutine(name, goal, isPublic) {
-  const token = localStorage.getItem("token");
-  const options = {
+export async function updateRoutine(name, id, goal, token) {
+  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
     method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       goal,
-      isPublic,
     }),
-  };
-  const response = await fetch(
-    `http://fitnesstrac-kr.herokuapp.com/api/routines${id}`,
-    options
-  );
-  const result = await response.json();
-  return result;
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch(console.error);
 }
