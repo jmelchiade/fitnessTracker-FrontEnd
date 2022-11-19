@@ -176,6 +176,7 @@ export async function createRoutine(name, goal, isPublic) {
 
 //update a routine
 export async function updateRoutine(id, isPublic, name, goal) {
+  const token = localStorage.getItem("token");
   try {
     const options = {
       method: "PATCH",
