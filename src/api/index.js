@@ -153,8 +153,8 @@ export async function createRoutine(name, goal, isPublic) {
 }
 
 //update a routine
-
-export async function updateRoutine(name, id, goal, token) {
+//I think all our api's should look something like this
+export async function updateRoutine(id, name, goal, token) {
   fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
     method: "PATCH",
     headers: {
