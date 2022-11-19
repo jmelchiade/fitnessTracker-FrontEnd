@@ -153,7 +153,6 @@ export async function createRoutine(name, goal, isPublic) {
 }
 
 //update a routine
-//I think all our api's should look something like this
 export async function updateRoutine(id, name, goal, token) {
   fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
     method: "PATCH",
@@ -174,21 +173,24 @@ export async function updateRoutine(id, name, goal, token) {
 }
 
 //delete a routine
+//I think all our api's should look something like this
+export async function destroyRoutine(id) {
+  try {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-export async function deleteRoutine(id, token, setRoutineDelete) {
-  fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      console.log(result);
-      if (result.success == true) {
-        setDeleteMessage("Routine deleted!");
-      }
-    })
-    .catch(console.error);
+    const response = await fetch(
+      `http://fitnesstrac-kr.herokuapp.com/api/routines/${id}`,
+      options
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }

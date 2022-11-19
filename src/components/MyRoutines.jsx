@@ -18,6 +18,7 @@ const MyRoutines = (props) => {
   const allRoutines = props.allRoutines;
   const setAllRoutines = props.setAllRoutines;
   const currentUserData = props.currentUserData;
+  const id = props.id;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -58,7 +59,18 @@ const MyRoutines = (props) => {
     // const deleted = await deleteRoutine(toDelete, setDeleteRoutine);
     setDeleteRoutine(routineToDelete);
     console.log(selectedUserRoutine, "deleted banana");
+    const result = await deleteRoutine(id);
+    setAllRoutines([result, ...allRoutines]);
+    // return userRoutines;
   }
+
+  // async function handleDelete(e) {
+  //   e.preventDefault();
+  //   // const name = e.target[0].value;
+  //   // const goal = e.target[1].value;
+  //   const result = await deleteRoutine(routine.id);
+  //   setAllRoutines([result, ...allRoutines]);
+  // }
 
   useEffect(() => {
     const fetchUserRoutines = async () => {
