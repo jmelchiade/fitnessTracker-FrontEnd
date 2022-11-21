@@ -202,9 +202,9 @@ export async function updateRoutine(id, isPublic, name, goal) {
 }
 
 //delete a routine
-//I think all our api's should look something like this
 export async function deleteRoutine(id) {
   try {
+    const token = localStorage.getItem("token");
     const options = {
       method: "DELETE",
       headers: {

@@ -10,7 +10,8 @@ const MyRoutines = (props) => {
   const [userRoutines, setUserRoutines] = useState({});
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  const [deleteRoutine, setDeleteRoutine] = useState("");
+  // const [deleteRoutine, setDeleteRoutine] = useState("");
+  const [selectedRoutine, setSelectedRoutine] = useState("");
 
   const setSelectedUserRoutine = props.setSelectedUserRoutine;
   const selectedUserRoutine = props.selectedUserRoutine;
@@ -18,12 +19,10 @@ const MyRoutines = (props) => {
   const allRoutines = props.allRoutines;
   const setAllRoutines = props.setAllRoutines;
   const currentUserData = props.currentUserData;
-  const id = props.id;
+  // const id = props.id;
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // const name = e.target[0].value;
-    // const goal = e.target[1].value;
     const isPublic = checked;
     console.log(name, goal, isPublic, "form data!!");
     const result = await createRoutine(name, goal, isPublic);
@@ -48,29 +47,26 @@ const MyRoutines = (props) => {
     // setSelectedUserRoutine(selectedRoutine);
   }
 
-  async function handleDelete(e) {
-    e.preventDefault();
-    const toDelete = e.target.id;
-    console.log(toDelete, "routine id to delete");
-    const routineToDelete = userRoutines.filter((routine) => {
-      return routine.id == toDelete;
-    });
-    console.log(routineToDelete, "banana");
-    // const deleted = await deleteRoutine(toDelete, setDeleteRoutine);
-    setDeleteRoutine(routineToDelete);
-    console.log(selectedUserRoutine, "deleted banana");
-    const result = await deleteRoutine(id);
-    setAllRoutines([result, ...allRoutines]);
-    // return userRoutines;
-  }
-
   // async function handleDelete(e) {
   //   e.preventDefault();
-  //   // const name = e.target[0].value;
-  //   // const goal = e.target[1].value;
-  //   const result = await deleteRoutine(routine.id);
+  //   const toDelete = e.target.id;
+  //   console.log(toDelete, "routine id to delete");
+  //   const routineToDelete = userRoutines.filter((routine) => {
+  //     return routine.id == toDelete;
+  //   });
+  //   console.log(routineToDelete, "banana");
+  //   // const deleted = await deleteRoutine(toDelete, setDeleteRoutine);
+  //   setDeleteRoutine(routineToDelete);
+  //   console.log(selectedUserRoutine, "deleted banana");
+  //   const result = await deleteRoutine(id);
   //   setAllRoutines([result, ...allRoutines]);
+  //   // return userRoutines;
   // }
+
+  async function handleDelete(e) {
+    e.preventDefault();
+    
+  }
 
   useEffect(() => {
     const fetchUserRoutines = async () => {
