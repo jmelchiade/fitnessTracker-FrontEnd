@@ -23,7 +23,6 @@ const Activities = (props) => {
         "http://fitnesstrac-kr.herokuapp.com/api/activities"
       );
       const result = await response.json();
-      // console.log(result, "this is activities result");
       setAllActivities(result);
     };
     getAllActivities();
@@ -31,10 +30,7 @@ const Activities = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // const name = e.target[0].value;
-    // const description = e.target[1].value;
     const result = await createActivity(name, description);
-    console.log(result, "Created activity!");
 
     if (result.error) {
       const message = result.error;
@@ -48,8 +44,6 @@ const Activities = (props) => {
 
   return (
     <div id="activity">
-      {/* <ViewportList viewportRef={ref} items={items} itemMinSize={40} margin={8}> */}
-
       {isLogin === true ? (
         <div>
           <h3>Create new activity</h3>

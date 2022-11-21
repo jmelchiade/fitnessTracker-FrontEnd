@@ -11,13 +11,14 @@ const Routines = (props) => {
         "http://fitnesstrac-kr.herokuapp.com/api/routines"
       );
       const result = await response.json();
-      // console.log(result, "this is all routines result");
       setAllRoutines(result);
     };
     getAllRoutines();
   }, []);
 
   return (
+    <>
+    <h2>Routines:</h2>
     <div id="routines">
       {allRoutines && allRoutines.length
         ? allRoutines.map((routine) => {
@@ -35,7 +36,7 @@ const Routines = (props) => {
                           <div>Description: {activity.description} </div>
                           <div>Duration: {activity.duration}</div>
                           <div>Count: {activity.count}</div>
-                        </div>
+                        </div>                        
                       );
                     })
                   ) : (
@@ -47,6 +48,7 @@ const Routines = (props) => {
           })
         : null}
     </div>
+    </>
   );
 };
 

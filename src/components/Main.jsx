@@ -22,8 +22,6 @@ const Main = () => {
   const [selectedUserRoutine, setSelectedUserRoutine] = useState({});
 
   useEffect(() => {
-    //we should only have successfully stored local token data
-    //from our if/else in login/register components
     if (localStorage.getItem("token")) {
       setLogin(true);
     }
@@ -37,8 +35,6 @@ const Main = () => {
     }
     getCurrentUserInfo();
   }, []);
-  //add use effect for checking if token exists in local storage for auto logging in user
-  //16nov22 - added useEffect for auto Login; sets login to ALWAYS true... sets all buttons to hide... Jen
 
   return (
     <div id="main">

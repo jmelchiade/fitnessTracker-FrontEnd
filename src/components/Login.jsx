@@ -27,13 +27,6 @@ const Login = (props) => {
       props.setLogin(true);
       navigate("/");
     }
-    // const token = loggedInUser.token;
-    // localStorage.removeItem("token");
-    // localStorage.setItem("token", token);
-    // // const approvedUsername = loggedInUser.username
-    // localStorage.removeItem("username");
-    // localStorage.setItem("username", username);
-    // props.setLogin(true);
   }
   return (
     <div id="login">

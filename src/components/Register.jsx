@@ -25,15 +25,8 @@ const Register = (props) => {
       localStorage.setItem("token", token);
       localStorage.setItem("username", username);
       props.setLogin(true);
+      navigate("/");
     }
-    navigate("/myRoutines");
-    // const token = userData.token;
-    // localStorage.removeItem("token");
-    // localStorage.setItem("token", token);
-    // const approvedUsername = userData.user.username
-    // localStorage.removeItem("username");
-    // localStorage.setItem("username", approvedUsername);
-    // props.setLogin(true);
   }
   return (
     <div id="register">
